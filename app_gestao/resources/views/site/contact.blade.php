@@ -1,7 +1,7 @@
 <h3>Contate-nos (view) </h3>
 
 <ul>
-<li>
+    <li>
         <a href="{{ route('site.index') }}"> Principal </a>
     </li>
 
@@ -12,4 +12,5 @@
     <li>
         <a href="{{ route('site.contact')}}"> Contact </a>
     </li>
+
 </ul>
