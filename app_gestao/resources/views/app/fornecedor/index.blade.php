@@ -1,3 +1,6 @@
+<body style="background-color: grey;">
+
+
 <h3>Fornecedor</h3>
 
 {{-- Fica o comentario que será descartado pelo interpretador do blade --}}
@@ -76,4 +79,5 @@
 @unless ($fornecedores[0]['status'] == 'S') se o retorno da condição for false
     Fornecedor Inativo
 @endunless --}}
+</body>
 
