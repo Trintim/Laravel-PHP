@@ -1,4 +1,4 @@
-<body style="background-color: grey;">
+<body style="background-color: rgb(112, 5, 103);">
 
 
 <h3>Fornecedor</h3>
