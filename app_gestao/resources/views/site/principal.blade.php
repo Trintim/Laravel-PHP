@@ -1,22 +1,8 @@
 @extends('site.layouts.base')
 
-@section('Title', 'Principal')
+@section('Title', 'Home')
 
 @section('conteudo')
-    <div class="topo">
-
-        <div class="logo">
-            <img src="{{ asset('img/logo.png') }}">
-        </div>
-
-        <div class="menu">
-            <ul>
-                <li><a href="{{ route('site.index') }}">Principal</a></li>
-                <li><a href="{{ route('site.aboutus') }}">Sobre Nós</a></li>
-                <li><a href="{{ route('site.contact') }}">Contato</a></li>
-            </ul>
-        </div>
-    </div>
 
     <div class="conteudo-destaque">
 
@@ -45,24 +31,9 @@
                 <h1>Contato</h1>
                 <p>Caso tenha qualquer dúvida por favor entre em contato com nossa equipe pelo formulário abaixo.
                 <p>
-                <form>
-                    <input type="text" placeholder="Nome" class="borda-branca">
-                    <br>
-                    <input type="text" placeholder="Telefone" class="borda-branca">
-                    <br>
-                    <input type="text" placeholder="E-mail" class="borda-branca">
-                    <br>
-                    <select class="borda-branca">
-                        <option value="">Qual o motivo do contato?</option>
-                        <option value="">Dúvida</option>
-                        <option value="">Elogio</option>
-                        <option value="">Reclamação</option>
-                    </select>
-                    <br>
-                    <textarea class="borda-branca">Preencha aqui a sua mensagem</textarea>
-                    <br>
-                    <button type="submit" class="borda-branca">ENVIAR</button>
-                </form>
+                @component('site.layouts._componets.form_contato', ['classe' => 'borda-branca'])
+
+                @endcomponent
             </div>
         </div>
     </div>

@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 class ContatoController extends Controller
 {
     public function contato(){
-        return view('site.contact');
+
+        var_dump($_POST);
+
+        return view('site.contact', ['Title' => 'Contato (Teste)']);
     }
 }

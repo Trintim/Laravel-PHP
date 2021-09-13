@@ -1,22 +1,8 @@
 @extends('site.layouts.base')
 
-@section('Title', 'Contato')
+@section('Title', $Title)
 
 @section('conteudo')
-    <div class="topo">
-
-        <div class="logo">
-            <img src="{{ asset('img/logo.png') }}">
-        </div>
-
-        <div class="menu">
-            <ul>
-                <li><a href="{{ route('site.index') }}">Principal</a></li>
-                <li><a href="{{ route('site.aboutus') }}">Sobre Nós</a></li>
-                <li><a href="{{ route('site.contact') }}">Contato</a></li>
-            </ul>
-        </div>
-    </div>
 
     <div class="conteudo-pagina">
         <div class="titulo-pagina">
@@ -25,24 +11,10 @@
 
         <div class="informacao-pagina">
             <div class="contato-principal">
-                <form>
-                    <input type="text" placeholder="Nome" class="borda-preta">
-                    <br>
-                    <input type="text" placeholder="Telefone" class="borda-preta">
-                    <br>
-                    <input type="text" placeholder="E-mail" class="borda-preta">
-                    <br>
-                    <select class="borda-preta">
-                        <option value="">Qual o motivo do contato?</option>
-                        <option value="">Dúvida</option>
-                        <option value="">Elogio</option>
-                        <option value="">Reclamação</option>
-                    </select>
-                    <br>
-                    <textarea class="borda-preta">Preencha aqui a sua mensagem</textarea>
-                    <br>
-                    <button type="submit" class="borda-preta">ENVIAR</button>
-                </form>
+                @component('site.layouts._componets.form_contato', ['classe' => 'borda-preta'])
+                    <p>A nossa equipe analizara sua mensagem e retornaremos em breve!</p>
+                    <p>Nosso tempo medio de resposta e de 30 minutos.</p>
+                @endcomponent
             </div>
         </div>
     </div>
