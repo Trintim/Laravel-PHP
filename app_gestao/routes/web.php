@@ -7,14 +7,12 @@ use App\Http\Controllers\SobreNosController;
 use App\Http\Controllers\TesteController;
 use Illuminate\Support\Facades\Route;
 
-/*Route::get('/', function () {
-    return "Gestão de Apps!";
-});*/
+
 
 Route::get('/', [PrincipalController::class, 'principal'])->name('site.index');
 Route::get('/aboutus', [SobreNosController::class, 'sobrenos'])->name('site.aboutus');
 Route::get('/contact', [ContatoController::class, 'contato'])->name('site.contact');
-Route::post('/contact', [ContatoController::class, 'contato'])->name('site.contact');
+//Route::post('/contact', [ContatoController::class, 'contato'])->name('site.contact');
 Route::get('/login', function(){return 'Login';})->name('site.login');
 
 Route::prefix('/app')->group(function(){
@@ -23,11 +21,11 @@ Route::prefix('/app')->group(function(){
     Route::get('/produtos',  function(){return 'Produtos';})->name('app.produtos');
 });
 
-Route::get('/teste/{p1}/{p2}', [TesteController::class, 'teste'])->name('teste');
+//Route::get('/teste/{p1}/{p2}', [TesteController::class, 'teste'])->name('teste');
 
-Route::fallback(function(){
+/*Route::fallback(function(){
     echo 'A rota acessada não existe. <a href="'.route('site.index').'">Clique aqui</a> para ir para a página inicial';
-});
+});*/
 
 
 /*
@@ -44,13 +42,13 @@ Route::get('/rota2', function () {
 
 // nome, categoria, assunto, mensagem
 
-
+//envia parametros
 /*Route::get('contact/{nome}/{categoria_id}', //select id
     function(
         string $name = 'Desconhecido',
         int $categoria_id = 1, // 1 - 'Informação'
     ){
-    echo "Estamos aqui: ". $name .", categoria: " . $categoria_id;}
+    echo 'Estamos aqui: '. $name . ' - categoria: ' . $categoria_id;}
 )->where('categoria_id', '[0-9]+')->where('nome', '[A-Za-z]+');*/
 
 /*Route::get('contact/{nome?}/{categoria?}/{assunto?}/{mensagem?}',
