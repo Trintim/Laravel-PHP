@@ -1,9 +1,12 @@
-<body style="background-color: rgb(112, 5, 103);">
+<body style="background-color: rgba(133, 28, 124, 0.514);">
 
 <h3>Fornecedor</h3>
 
 {{-- Fica o comentario que será descartado pelo interpretador do blade --}}
 
+{{--Teste comentario--}}
+
+{{--comentarios para php--}}
 @php
     /*
     if(!<condição>){} // enquanto executa se o retorno for TRUE
@@ -20,6 +23,54 @@
 
     */
 @endphp
+
+
+
+{{--
+@isset($fornecedores)
+    Fornecedores: {{$fornecedores[0]['nome']}}
+    <br>
+    Status: {{$fornecedores[0]['status']}}
+    <br>
+    @isset($fornecedores[0]['cnpj'])
+        CNPJ: {{$fornecedores[0]['cnpj']}}
+        @empty($fornecedores[0]['cnpj'])
+            - Vazio
+        @endempty
+    @endisset
+    <br>
+    Fornecedores: {{$fornecedores[1]['nome']}}
+    <br>
+    Status: {{$fornecedores[1]['status']}}
+    <br>
+    @isset($fornecedores[1]['cnpj'])
+        CNPJ: {{$fornecedores[1]['cnpj']}}
+    @endisset
+    <br>
+@endisset--}}
+
+{{--
+@if(count($fornecedores) > 0 && count($fornecedores) < 10)
+    <h2>Existem fornecedores cadastrados</h2>
+@elseif(count($fornecedores) > 10)
+    <h2>Existem varios fornecedores cadastrados</h2>
+@else
+    <h2>Ainda não existem fornecedores</h2>
+@endif
+--}}
+{{--
+Fornecedores: {{$fornecedores[0]['nome']}}
+<br>
+Status: {{$fornecedores[0]['status']}}
+<br>
+@if( !($fornecedores[0]['status'] == 'S'))
+    Fornecedor inativo
+@endif
+<br>
+@unless ($fornecedores[0]['status'] == 'S')
+    Inativaço
+@endunless
+--}}
 
 
 @isset($fornecedores)
@@ -44,11 +95,10 @@
             Total de registros: {{$loop->count}}
         @endif
         <hr>
-    @empty
-        Não Existem fornecedores cadastrados
-    @endforelse ($fornecedores as $item => $fornecedor)
+        @empty
+            Não Existem fornecedores cadastrados
+    @endforelse
 @endisset
-
 
 
 </body>

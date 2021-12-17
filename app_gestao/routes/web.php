@@ -21,11 +21,11 @@ Route::prefix('/app')->group(function(){
     Route::get('/produtos',  function(){return 'Produtos';})->name('app.produtos');
 });
 
-//Route::get('/teste/{p1}/{p2}', [TesteController::class, 'teste'])->name('teste');
+Route::get('/teste/{p1}/{p2}', [TesteController::class, 'teste'])->name('teste');
 
-/*Route::fallback(function(){
+Route::fallback(function(){
     echo 'A rota acessada não existe. <a href="'.route('site.index').'">Clique aqui</a> para ir para a página inicial';
-});*/
+});
 
 
 /*
