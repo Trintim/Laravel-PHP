@@ -8,11 +8,10 @@ use App\Http\Controllers\TesteController;
 use Illuminate\Support\Facades\Route;
 
 
-
 Route::get('/', [PrincipalController::class, 'principal'])->name('site.index');
 Route::get('/aboutus', [SobreNosController::class, 'sobrenos'])->name('site.aboutus');
 Route::get('/contact', [ContatoController::class, 'contato'])->name('site.contact');
-//Route::post('/contact', [ContatoController::class, 'contato'])->name('site.contact');
+Route::post('/contact', [ContatoController::class, 'contato'])->name('site.contact');
 Route::get('/login', function(){return 'Login';})->name('site.login');
 
 Route::prefix('/app')->group(function(){
