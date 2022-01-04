@@ -5,18 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SiteContato extends Model
+class Fornecedor extends Model
 {
     use HasFactory;
 
-    protected $table = 'site_contatos';
+    protected $table = 'fornecedores';
 
     protected $fillable = [
 
-        'name',
-        'telefone',
+        'nome',
+        'site',
+        'uf',
         'email',
-        'motivo',
-        'message',
     ];
 }
