@@ -9,14 +9,14 @@ class SiteContato extends Model
 {
     use HasFactory;
 
-    protected $table = 'site_contatos';
+    //protected $table = 'site_contatos';
 
     protected $fillable = [
 
         'name',
         'telefone',
         'email',
-        'motivo',
+        'motivo_contatos_id',
         'message',
     ];
 }

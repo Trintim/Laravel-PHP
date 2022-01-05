@@ -2,20 +2,28 @@
 
 <form action="{{ route('site.contact') }}" method="post">
     @csrf
-    <input name="nome" type="text" placeholder="Nome" class="{{ $classe }}">
+    <input name="name" value="{{old('name')}}" type="text" placeholder="Nome" class="{{ $classe }}">
     <br>
-    <input name="telefone" type="text" placeholder="Telefone" class="{{ $classe }}">
+    <input name="telefone" value="{{old('telefone')}}" type="text" placeholder="Telefone" class="{{ $classe }}">
     <br>
-    <input name="email" type="text" placeholder="E-mail" class="{{ $classe }}">
+    <input name="email" value="{{old('email')}}" type="text" placeholder="E-mail" class="{{ $classe }}">
     <br>
-    <select name="motivo_contato" class="{{ $classe }}">
+    <select name="motivo_contatos_id" class="{{ $classe }}">
         <option value="">Qual o motivo do contato?</option>
-        <option value="1">Dúvida</option>
-        <option value="2">Elogio</option>
-        <option value="3">Reclamação</option>
+        @foreach ($motivo as $motivo)
+            <option value="{{$motivo->id}}" {{old('motivo_contatos_id') == $motivo->id ? 'selected' : ''}}>{{ $motivo->motivo_contato }}</option>
+        @endforeach
     </select>
     <br>
-    <textarea name="mensagem" class="{{ $classe }}">Preencha aqui a sua mensagem</textarea>
+    <textarea name="message" class="{{ $classe }}">{{ (old('message') != '') ? old('message') : 'Preencha aqui a sua mensagem' }}
+    </textarea>
     <br>
     <button type="submit" class="{{ $classe }}">ENVIAR</button>
 </form>
+
+
+<div style="position: absolute; top:0px; left:0px; width:100%; background: green">
+    <pre>
+        {{print_r($errors)}}
+    </pre>
+</div>

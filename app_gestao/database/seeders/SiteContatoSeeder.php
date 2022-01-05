@@ -15,7 +15,7 @@ class SiteContatoSeeder extends Seeder
     public function run()
     {
 
-        SiteContato::factory()->count(100)->create();
+        //SiteContato::factory()->count(100)->create();
 
         /*
         $contato = new SiteContato();
