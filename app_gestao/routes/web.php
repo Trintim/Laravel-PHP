@@ -5,16 +5,17 @@ use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\SobreNosController;
 use App\Http\Controllers\TesteController;
+
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', [PrincipalController::class, 'principal'])->name('site.index');
+Route::get('/', [PrincipalController::class, 'principal'])->name('site.index')->middleware('log.acesso');
 Route::get('/aboutus', [SobreNosController::class, 'sobrenos'])->name('site.aboutus');
 Route::get('/contact', [ContatoController::class, 'contato'])->name('site.contact');
 Route::post('/contact', [ContatoController::class, 'salvar'])->name('site.contact');
 Route::get('/login', function(){return 'Login';})->name('site.login');
 
-Route::prefix('/app')->group(function(){
+Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(function(){
     Route::get('/clientes', function(){return 'Clientes';})->name('app.clientes');
     Route::get('/fornecedores', [FornecedorController::class, 'index'])->name('app.fornecedores');
     Route::get('/produtos',  function(){return 'Produtos';})->name('app.produtos');

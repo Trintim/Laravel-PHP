@@ -7,6 +7,9 @@ use App\Models\MotivoContato;
 
 class PrincipalController extends Controller
 {
+
+
+
     public function principal(){
         //echo 'Olá sejam bem-vindos!';
         $motivo = MotivoContato::all();
