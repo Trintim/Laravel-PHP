@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Produto extends Model
+class Item extends Model
 {
     use HasFactory;
+
+    protected $table = 'produtos';
 
     protected $fillable = [
 
@@ -17,14 +19,11 @@ class Produto extends Model
         'unidade_id',
     ];
 
-    public function produtoDetalhe(){
+    public function itemDetalhe(){
 
-        return $this->hasOne(ProdutoDetalhe::class);
+        return $this->hasOne(ItemDetalhe::class, 'produto_id');
 
-        /* Produto tem 1 produtoDetalhe
-
-           1 registro em produto_detalhes com base na (fk) -> produto_id
-           produtos (pk) -> id
+        /* fk item_id
         */
     }
 }

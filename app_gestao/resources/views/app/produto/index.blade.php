@@ -25,6 +25,10 @@
                             <th>Descrição</th>
                             <th>peso</th>
                             <th>Unidade ID</th>
+                            <th>Comprimento</th>
+                            <th>Largura</th>
+                            <th>Altura</th>
+                            <th></th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -36,8 +40,20 @@
                                 <td>{{$produto->descricao}}</td>
                                 <td>{{$produto->peso}}</td>
                                 <td>{{$produto->unidade_id}}</td>
-                                <td><a href="">Excluir</a></td>
-                                <td><a href="">Editar</a></td>
+                                <th>{{$produto->itemDetalhe->comprimento ?? ''}}</th>
+                                <th>{{$produto->itemDetalhe->largura ?? ''}}</th>
+                                <th>{{$produto->itemDetalhe->altura ?? ''}}</th>
+                                <td><a href="{{route('produto.show',['produto' => $produto->id])}}">Exibir</a></td>
+                                <td>
+                                    <form id="form_{{$produto->id}}" action="{{route('produto.destroy', ['produto' => $produto->id])}}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                       <!--  <button type="submit">Excluir</button> -->
+                                       <a href="#" onclick="document.getElementById('form_{{$produto->id}}').submit()">Excluir</a>
+                                    </form>
+                                    <!--<a href="">Excluir</a>-->
+                                </td>
+                                <td><a href="{{route('produto.edit', ['produto' => $produto->id]) }}">Editar</a></td>
                             </tr>
                         @endforeach
                     </tbody>
