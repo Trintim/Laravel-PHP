@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProdutoRequest;
+use App\Models\Fornecedor;
 use App\Models\Item;
 use App\Models\Produto;
 use App\Models\ProdutoDetalhe;
@@ -18,7 +19,8 @@ class ProdutoController extends Controller
      */
     public function index(Request $request)
     {
-        $produtos = Item::paginate(10);
+        //tecnica eager loading
+        $produtos = Item::with(['itemDetalhe', 'fornecedor'])->paginate(10);
 
 
         /* foreach($produtos as $key => $produto){
@@ -47,9 +49,10 @@ class ProdutoController extends Controller
      */
     public function create()
     {
+        $fornecedores = Fornecedor::all();
         $unidades = Unidade::all();
 
-        return view('app.produto.create', ['unidades' => $unidades]);
+        return view('app.produto.create', ['unidades' => $unidades, 'fornecedores' => $fornecedores]);
     }
 
     /**
@@ -61,7 +64,7 @@ class ProdutoController extends Controller
     public function store(ProdutoRequest $request)
     {
         $request->validated();
-        Produto::create($request->all());
+        Item::create($request->all());
 
         return redirect()->route('produto.index');
     }
@@ -89,7 +92,8 @@ class ProdutoController extends Controller
     {
         //
         $unidades = Unidade::all();
-        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades]);
+        $fornecedores = Fornecedor::all();
+        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades, 'fornecedores' => $fornecedores]);
         //return view('app.produto.create', ['produto' => $produto, 'unidades' => $unidades]);
     }
 
@@ -100,10 +104,11 @@ class ProdutoController extends Controller
      * @param  \App\Models\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function update(ProdutoRequest $request, Produto $produto)
+    public function update(ProdutoRequest $request, Item $produto)
     {
         //
         $request->validated();
+        //dd($request->all());
         $produto->update($request->all());
 
         return redirect()->route('produto.show', ['produto' => $produto->id]);

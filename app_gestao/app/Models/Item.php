@@ -17,6 +17,7 @@ class Item extends Model
         'descricao',
         'peso',
         'unidade_id',
+        'fornecedor_id'
     ];
 
     public function itemDetalhe(){
@@ -25,5 +26,17 @@ class Item extends Model
 
         /* fk item_id
         */
+    }
+
+    public function fornecedor(){
+
+        return $this->belongsTo(Fornecedor::class);
+    }
+
+    public function pedidos(){
+        return $this->belongsToMany(Pedido::class, 'pedidos_produtos', 'produto_id', 'pedido_id');
+
+        // 3 - Representa o nome da FK da tabela mapeada pelo model na tabela de relacionamento
+        // 4 - Representa o nome da FK da tabela mapeada pelo model utilizado no relacionamento ue estamos implementando
     }
 }

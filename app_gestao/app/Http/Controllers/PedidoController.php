@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ClienteRequest;
+use App\Http\Requests\PedidoRequest;
 use App\Models\Cliente;
+use App\Models\Pedido;
 use Illuminate\Http\Request;
 
-class ClienteController extends Controller
+class PedidoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,8 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-
-        $clientes = Cliente::paginate(10);
-        return view('app.cliente.index', ['clientes' => $clientes, 'request' => $request->all()]);
+        $pedidos = Pedido::paginate(10);
+        return view('app.pedido.index', ['pedidos' => $pedidos, 'request' => $request->all()]);
     }
 
     /**
@@ -27,8 +27,9 @@ class ClienteController extends Controller
      */
     public function create()
     {
-
-        return view('app.cliente.create');
+        //
+        $clientes = Cliente::all();
+        return view('app.pedido.create', ['clientes' => $clientes]);
     }
 
     /**
@@ -37,13 +38,13 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ClienteRequest $request)
+    public function store(PedidoRequest $request)
     {
         //
         $request->validated();
-        Cliente::create($request->all());
+        Pedido::create($request->all());
 
-        return redirect()->route('cliente.index');
+        return redirect()->route('pedido.index');
     }
 
     /**
